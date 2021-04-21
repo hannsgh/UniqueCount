@@ -18,15 +18,15 @@ public class App {
             fis = new FileInputStream("src/main/resources/properties.properties");
             property.load(fis);
 
-           String paths = property.getProperty("paths");
+            String paths = property.getProperty("paths");
 
             long before = System.currentTimeMillis();
-            System.out.println(property.getProperty("paths"));
-           long unique = count(paths);
+            System.out.println(" Идет анализ файла : " + property.getProperty("paths"));
+            long unique = count(paths);
             long after = System.currentTimeMillis();
 
-            System.out.println("Существует " + unique + " уникальных строк ");
-            System.out.println(" Время работы приложения : " + (after - before) / 1_000 + " sec");
+            System.out.println("В файле " + property.getProperty("paths") + " существует "  + unique + " уникальных строк ");
+            System.out.println("Время работы приложения : " + (after - before) / 1_000 + " sec");
 
 
         } catch (IOException e) {
@@ -34,7 +34,7 @@ public class App {
         }
 
 
-        }
+    }
 
     static long count(String paths) throws IOException {
         long unique = Files.lines(Paths.get(paths), Charset.defaultCharset())
@@ -43,4 +43,4 @@ public class App {
                 .count();
         return unique;
     }
-    }
+}
